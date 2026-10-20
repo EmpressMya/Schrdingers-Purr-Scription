@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using System.Security.Cryptography.X509Certificates;
 public class tutorialtext : MonoBehaviour
 {
+    [SerializeField]private GameObject book;
+    private bool isBookOpen = false;
 
     [SerializeField]private TextMeshProUGUI text;
 
@@ -11,7 +13,7 @@ public class tutorialtext : MonoBehaviour
     [SerializeField]private string[] pages =
     {
        "Page 1: Instructions: Move left (Left button or A) and right (right button or D).",
-       "Page 2: Yuh",
+       "Page 2: Press E to open/close the book",
        "Page 3: that's it",
        "Page 4: Adios!"
     };
@@ -48,10 +50,23 @@ public class tutorialtext : MonoBehaviour
             text.text = pages[PgNo];
         }
     }
+    void ToggleBook()
+    {
+        isBookOpen = !isBookOpen;
+        book.SetActive(isBookOpen);
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ToggleBook();
+        }
+
+        if (!isBookOpen)
+            return;
+
         if (Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.D))
         {
             NxtPg();

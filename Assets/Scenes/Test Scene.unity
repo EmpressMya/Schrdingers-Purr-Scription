@@ -713,7 +713,6 @@ GameObject:
   - component: {fileID: 1862670856}
   - component: {fileID: 1862670855}
   - component: {fileID: 1862670854}
-  - component: {fileID: 1862670858}
   m_Layer: 0
   m_Name: Instructions Manual (Book)
   m_TagString: Untagged
@@ -815,23 +814,56 @@ Transform:
   - {fileID: 1001038303}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1862670858
+--- !u!1 &1889530744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1889530746}
+  - component: {fileID: 1889530747}
+  m_Layer: 0
+  m_Name: Book Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1889530746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889530744}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -214.01494, y: -50.71082, z: 651.52216}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1889530747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862670853}
+  m_GameObject: {fileID: 1889530744}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a02b6b416b4b664d8a21438ce456802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::tutorialtext
+  book: {fileID: 1862670853}
   text: {fileID: 1261914970}
   pages:
   - 'Page 1: Instructions: Move left (Left button or A) and right (right button or
     D).'
-  - 'Page 2: Yuh'
+  - 'Page 2: Press E to open/close the book'
   - 'Page 3: that''s it'
   - 'Page 4: Adios!'
 --- !u!1660057539 &9223372036854775807
@@ -840,5 +872,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 23709738}
   - {fileID: 644219491}
+  - {fileID: 1889530746}
   - {fileID: 1862670857}
   - {fileID: 385393101}
