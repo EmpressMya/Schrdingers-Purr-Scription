@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a02b6b416b4b664d8a21438ce456802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::tutorialtext
-  text: {fileID: 0}
+  text: {fileID: 1261914970}
   pages:
   - 'Page 1: Instructions: Move left (Left button or A) and right (right button or
     D).'
