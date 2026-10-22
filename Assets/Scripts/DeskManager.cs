@@ -1,4 +1,7 @@
+using NUnit.Framework;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,20 +11,23 @@ public class DeskManager : MonoBehaviour
     private int livesRemaining;
 
     [Header("Master Lists (assign in Inspector)")]
-    public List<CatData> masterCatPool;
-    public List<ProblemData> masterProblemPool;
+    public List<CatDataBase> masterCatPool;
 
     [Header("Scene Slots")]
     public List<CatSlot> activeSlots;
 
+    [Header("ActiveCats")]
+    public List<GameObject> activeCats;
+
     [Header("Potion Controls")]
     public Slider greenPotionSlider;
 
-    [Header("Temporary Cat Rules")]
-    [SerializeField] private int cat1MinSafeGreen = 2;
-    [SerializeField] private int cat1MaxSafeGreen = 4;
-    [SerializeField] private int cat2MinSafeGreen = 3;
-    [SerializeField] private int cat2MaxSafeGreen = 5;
+    private int Round;
+
+    public TextMeshProUGUI roundText;
+    public TextMeshProUGUI livesText;
+    public TextMeshProUGUI loseText;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,11 +35,32 @@ public class DeskManager : MonoBehaviour
         livesRemaining = StartingLives;
         Debug.Log($"The round starts with {livesRemaining} lives.", this);
         GenerateWorkday();
+        Round= 1;
+        loseText.enabled = false;
+
+    }
+
+    private void Update()
+    {
+        roundText.text = Round.ToString();
+        livesText.text = livesRemaining.ToString();
     }
 
     public void GenerateWorkday()
     {
-        // Implementation for generating the workday
+        foreach (CatSlot slot in activeSlots)
+        {
+            slot.catProcess();
+        }
+    }
+
+    public void DestroyCats()
+    {
+        foreach (GameObject cat in activeCats)
+        {
+            Destroy(cat);
+        }
+        activeCats.Clear();
     }
 
     public void RestartGame()
@@ -50,6 +77,13 @@ public class DeskManager : MonoBehaviour
         }
 
         Debug.Log($"Game restarted with {livesRemaining} lives.", this);
+
+        DestroyCats();
+        GenerateWorkday();
+        loseText.enabled = false;
+        roundText.enabled = true;
+
+        Round = 1;
     }
 
     public void BrewPotion()
@@ -69,29 +103,42 @@ public class DeskManager : MonoBehaviour
         int greenAmount = Mathf.RoundToInt(greenPotionSlider.value);
         Debug.Log($"You brewed a potion with {greenAmount} green.", this);
 
-        bool cat1IsSafe = CheckCat("Cat 1", greenAmount, cat1MinSafeGreen, cat1MaxSafeGreen);
-        bool cat2IsSafe = CheckCat("Cat 2", greenAmount, cat2MinSafeGreen, cat2MaxSafeGreen);
+        bool allCatsAreSafe = true; // Declare and initialize here
 
-        bool atLeastOneCatWasHarmed =
-            greenAmount > cat1MaxSafeGreen || greenAmount > cat2MaxSafeGreen;
-
-        if (atLeastOneCatWasHarmed)
+        foreach (GameObject catObject in activeCats)
         {
-            livesRemaining--;
-            Debug.Log($"A cat was harmed. You lost one life. Lives remaining: {livesRemaining}.", this);
+            CatCompononet cat = catObject.GetComponent<CatCompononet>();
+            bool catIsSafe = CheckCat(cat.catinfo.catName, greenAmount, cat.probleminfo.minGreen, cat.probleminfo.maxGreen);
 
-            if (livesRemaining == 0)
+            if (!catIsSafe)
             {
-                Debug.Log("Game over. You are out of lives.", this);
+                allCatsAreSafe = false;
+                break;
             }
         }
-        else if (cat1IsSafe && cat2IsSafe)
+
+        if (allCatsAreSafe)
         {
-            Debug.Log("The potion is safe for every cat this round!", this);
+            Debug.Log("All cats are safe! You win this round.", this);
+            DestroyCats();
+            GenerateWorkday();
+            Round++;
         }
         else
         {
-            Debug.Log("The potion was not enough to help every cat. No life was lost.", this);
+            livesRemaining--;
+            Debug.Log($"One or more cats are not safe. Lives remaining: {livesRemaining}");
+            DestroyCats();
+            GenerateWorkday();
+            Round++;
+            if (livesRemaining <= 0)
+            {
+                Debug.Log("Game over. You have no lives remaining.");
+                DestroyCats();
+                roundText.enabled = false;
+                loseText.enabled = true;
+            }
+
         }
     }
 
