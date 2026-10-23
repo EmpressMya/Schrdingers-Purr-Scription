@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67944f60ed6f0334789436f9cb26ba59, type: 3}
   m_Name: Felix
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
-  catName: 
+  catName: Felix
   catSprite: {fileID: 0}
-  ProblemDescription: 
+  ProblemDescription: Needs a little bit of green but not too much
   problemIcon: {fileID: 0}
-  correctTreatment: 0
+  minGreen: 2
+  maxGreen: 4

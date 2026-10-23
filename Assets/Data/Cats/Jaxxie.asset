@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67944f60ed6f0334789436f9cb26ba59, type: 3}
   m_Name: Jaxxie
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
-  catName: 
+  catName: Jaxxie
   catSprite: {fileID: 0}
-  ProblemDescription: 
+  ProblemDescription: 'Needs a medium amount of green, not too little to high '
   problemIcon: {fileID: 0}
-  maxGreen: 0
-  minGreen: 0
+  minGreen: 2
+  maxGreen: 3
