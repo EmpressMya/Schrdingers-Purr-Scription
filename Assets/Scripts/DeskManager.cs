@@ -28,6 +28,8 @@ public class DeskManager : MonoBehaviour
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI loseText;
 
+    [SerializeField] private ScoreText scoreManager;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -66,6 +68,7 @@ public class DeskManager : MonoBehaviour
     public void RestartGame()
     {
         livesRemaining = StartingLives;
+        scoreManager.ResetScore();
 
         if (greenPotionSlider == null)
         {
@@ -112,33 +115,40 @@ public class DeskManager : MonoBehaviour
 
             if (!catIsSafe)
             {
+                scoreManager.AddScore();
+            }
+            else
+            {
                 allCatsAreSafe = false;
-                break;
             }
         }
 
         if (allCatsAreSafe)
         {
-            Debug.Log("All cats are safe! You win this round.", this);
-            DestroyCats();
-            GenerateWorkday();
-            Round++;
+
+            if (allCatsAreSafe)
+            {
+                Debug.Log("All cats are safe! You win this round.", this);
+            }
+
         }
         else
         {
             livesRemaining--;
             Debug.Log($"One or more cats are not safe. Lives remaining: {livesRemaining}");
             DestroyCats();
-            GenerateWorkday();
-            Round++;
+            DestroyCats();
             if (livesRemaining <= 0)
             {
                 Debug.Log("Game over. You have no lives remaining.");
-                DestroyCats();
                 roundText.enabled = false;
                 loseText.enabled = true;
             }
-
+            else
+            {
+                GenerateWorkday();
+                Round++;
+            }
         }
     }
 
