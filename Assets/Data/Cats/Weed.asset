@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
   catName: Weed
   catSprite: {fileID: 0}
-  ProblemDescription: Needs a good amount of Green, not too little
+  ProblemDescription: Has a bad tonsil infection. Has a history of getting deathly
+    sick if given unneeded medicine. 2 on the severity Scale
   problemIcon: {fileID: 0}
-  requiredMaterial: 0
-  requiredAmount: 0
-  deathMaterial: 0
-  deathAmount: 0
-  tolerance: 1
+  requiredMaterial: 1
+  requiredAmount: 2
+  deathMaterial: 3
+  deathAmount: 5
+  tolerance: 2

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
   catName: Q-Tip
   catSprite: {fileID: 0}
-  ProblemDescription: Needs a good amount of Green, not too little
+  ProblemDescription: Is missing his ears. Has a history of growing internal organs
+    when given unneeded medicine. 5 on the Severity Scale
   problemIcon: {fileID: 0}
   requiredMaterial: 0
-  requiredAmount: 0
-  deathMaterial: 0
-  deathAmount: 0
-  tolerance: 1
+  requiredAmount: 5
+  deathMaterial: 4
+  deathAmount: 4
+  tolerance: 2

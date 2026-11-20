@@ -15,10 +15,10 @@ MonoBehaviour:
   catName: MeowSkulls
   catSprite: {fileID: 0}
   ProblemDescription: Has a stomach ache from eating bad food. Has a history of growing
-    extra limbs if given uneeded medicine. 1 on the Severity Scale
+    extra limbs if given uneeded medicine. 2 on the Severity Scale
   problemIcon: {fileID: 0}
   requiredMaterial: 4
-  requiredAmount: 1
+  requiredAmount: 2
   deathMaterial: 0
-  deathAmount: 3
-  tolerance: 1
+  deathAmount: 4
+  tolerance: 2

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
   catName: Penelope
   catSprite: {fileID: 0}
-  ProblemDescription: Needs a good amount of Green, not too little
+  ProblemDescription: Has been growing popping pimples on her face. Has a history
+    of growing more tails when given unneeded medicine. 4 on the Severity Scale.
   problemIcon: {fileID: 0}
-  requiredMaterial: 0
-  requiredAmount: 0
+  requiredMaterial: 1
+  requiredAmount: 4
   deathMaterial: 0
-  deathAmount: 0
-  tolerance: 1
+  deathAmount: 5
+  tolerance: 2

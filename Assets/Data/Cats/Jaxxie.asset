@@ -20,5 +20,5 @@ MonoBehaviour:
   requiredMaterial: 1
   requiredAmount: 2
   deathMaterial: 4
-  deathAmount: 3
-  tolerance: 1
+  deathAmount: 4
+  tolerance: 2

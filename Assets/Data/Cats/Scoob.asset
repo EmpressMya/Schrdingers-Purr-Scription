@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
   catName: Scoob
   catSprite: {fileID: 0}
-  ProblemDescription: Needs a good amount of Green, not too little
+  ProblemDescription: 'Has a cough and strep throat. Has had a history of getting
+    a rash when given unneeded medicine. 2 on the Severity Scale. '
   problemIcon: {fileID: 0}
-  requiredMaterial: 0
-  requiredAmount: 0
-  deathMaterial: 0
-  deathAmount: 0
-  tolerance: 1
+  requiredMaterial: 3
+  requiredAmount: 2
+  deathMaterial: 1
+  deathAmount: 5
+  tolerance: 2

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
   catName: Samuel
   catSprite: {fileID: 0}
-  ProblemDescription: Needs a good amount of Green, not too little
+  ProblemDescription: Has internal bleeding in their liver. Has a history of hearing
+    voices when given to much unneeded medicine. 3 on the Severity Scale.
   problemIcon: {fileID: 0}
-  requiredMaterial: 0
-  requiredAmount: 0
-  deathMaterial: 0
-  deathAmount: 0
-  tolerance: 1
+  requiredMaterial: 4
+  requiredAmount: 3
+  deathMaterial: 2
+  deathAmount: 5
+  tolerance: 2

@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
   catName: Chester
   catSprite: {fileID: 0}
-  ProblemDescription: 'Having issues hearing voices in his head. Has had a history
-    of having bad reactions to uneeded medicine for his peg leg. 4 on the Severity
-    Scale '
+  ProblemDescription: 'Having issues hearing voices in his head. Has had a histroy
+    of growing warts if given uneeded medicine. 4 on the Severity Scale '
   problemIcon: {fileID: 0}
   requiredMaterial: 2
   requiredAmount: 4
-  deathMaterial: 0
-  deathAmount: 2
-  tolerance: 1
+  deathMaterial: 1
+  deathAmount: 5
+  tolerance: 2

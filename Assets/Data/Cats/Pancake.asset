@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
   catName: Pancake
   catSprite: {fileID: 0}
-  ProblemDescription: Needs a good amount of Green, not too little
+  ProblemDescription: Has a been growing mold after being infected by spores. Has
+    a history of growing more eyes than needed when gvien unnessacary medicine. 5
+    on the Severity Scale.
   problemIcon: {fileID: 0}
-  requiredMaterial: 0
-  requiredAmount: 0
+  requiredMaterial: 3
+  requiredAmount: 5
   deathMaterial: 0
-  deathAmount: 0
-  tolerance: 1
+  deathAmount: 5
+  tolerance: 2

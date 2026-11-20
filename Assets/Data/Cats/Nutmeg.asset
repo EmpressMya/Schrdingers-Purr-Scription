@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
   catName: Nutmeg
   catSprite: {fileID: 0}
-  ProblemDescription: 'Has a spraied '
+  ProblemDescription: 'Has a broken color bone. Has a history of getting incredibly
+    sick given uneeded medicine. 4 on the Severity Scale '
   problemIcon: {fileID: 0}
   requiredMaterial: 4
-  requiredAmount: 0
+  requiredAmount: 4
   deathMaterial: 3
-  deathAmount: 0
-  tolerance: 1
+  deathAmount: 4
+  tolerance: 2

@@ -4243,9 +4243,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeskManager
   masterCatPool:
+  - {fileID: 11400000, guid: 8c25173bdbe94134fac365ce24922446, type: 2}
   - {fileID: 11400000, guid: 87f03168cde9a1f4996d302660ddbbe6, type: 2}
+  - {fileID: 11400000, guid: e0bc7218b7a34a94f9cde0c32e97165e, type: 2}
   - {fileID: 11400000, guid: 5a7c3aa77132e0b4a9f25b16854f19c8, type: 2}
+  - {fileID: 11400000, guid: 4f0dbaa61a2b520479533c43ea2d9dd2, type: 2}
+  - {fileID: 11400000, guid: 36e490c02c76d154b9bb24f74f0e2bd2, type: 2}
+  - {fileID: 11400000, guid: ac68926905cd2654eb6f29b114806ef9, type: 2}
+  - {fileID: 11400000, guid: 93b56c75c1c9b2a4d929eff3e4756bc4, type: 2}
+  - {fileID: 11400000, guid: d421b691d0341814dbb11473db2133e2, type: 2}
+  - {fileID: 11400000, guid: 9f9240e3260e62144bda6b7ce774c9ca, type: 2}
   - {fileID: 11400000, guid: 7be8375c1e1705c4984a38e3b130c173, type: 2}
+  - {fileID: 11400000, guid: a5d5f2ec797fa61448090fef14d21df6, type: 2}
+  - {fileID: 11400000, guid: b8cd05fbff4fa4b47aa3c2b0026e0754, type: 2}
+  - {fileID: 11400000, guid: 75fb978ffdee51f4db9db4a100d614a8, type: 2}
+  - {fileID: 11400000, guid: 2756155c41d282645909d2933695d3a1, type: 2}
+  - {fileID: 11400000, guid: 624468c2c53a3b44cbcae543512459a9, type: 2}
   activeSlots:
   - {fileID: 2039212027}
   - {fileID: 1904533803}
@@ -4256,6 +4269,11 @@ MonoBehaviour:
   livesText: {fileID: 895758170}
   loseBox: {fileID: 1904808062}
   potionNotes: {fileID: 1874103267}
+  redAmount: {fileID: 579737014}
+  yellowAmount: {fileID: 2020116600}
+  blueAmount: {fileID: 2125420079}
+  greenAmount: {fileID: 153106393}
+  magentaAmount: {fileID: 1307904330}
   scoreManager: {fileID: 0}
 --- !u!4 &1496892315
 Transform:

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
   catName: Velma
   catSprite: {fileID: 0}
-  ProblemDescription: Needs a good amount of Green, not too little
+  ProblemDescription: Has been having insomnia. Has a history of spitting out inside-out
+    organs if given unneeded medicine. 3 on the Severity Scale.
   problemIcon: {fileID: 0}
-  requiredMaterial: 0
-  requiredAmount: 0
-  deathMaterial: 0
-  deathAmount: 0
-  tolerance: 1
+  requiredMaterial: 2
+  requiredAmount: 3
+  deathMaterial: 4
+  deathAmount: 5
+  tolerance: 2
