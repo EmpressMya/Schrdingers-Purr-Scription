@@ -15,8 +15,7 @@ MonoBehaviour:
   catName: Fred
   catSprite: {fileID: 0}
   ProblemDescription: Hurt both of his legs falling off a tall building. Has a history
-    of hysteria when given large amounts of uneeded medicine. Severity Scale 4history
-    of getting depre when given uneeded medicine.
+    of hysteria when given large amounts of uneeded medicine. 4 on the Severity Scale.
   problemIcon: {fileID: 0}
   requiredMaterial: 0
   requiredAmount: 4
