@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
   catName: Jaxxie
   catSprite: {fileID: 0}
-  ProblemDescription: 'Needs a medium amount of green, not too little to high '
+  ProblemDescription: Has an ear infection. Has a history of turning inside out when
+    given unneeded medicine.  2 on the Severity Scale.
   problemIcon: {fileID: 0}
-  minGreen: 2
-  maxGreen: 3
+  requiredMaterial: 1
+  requiredAmount: 2
+  deathMaterial: 4
+  deathAmount: 3
+  tolerance: 1

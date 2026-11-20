@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67944f60ed6f0334789436f9cb26ba59, type: 3}
   m_Name: Felix
   m_EditorClassIdentifier: Assembly-CSharp::CatDataBase
-  catName: Felix
+  catName: Chester
   catSprite: {fileID: 0}
-  ProblemDescription: Needs a little bit of green but not too much
+  ProblemDescription: 'Having issues hearing voices in his head. Has had a history
+    of having bad reactions to uneeded medicine for his peg leg. 4 on the Severity
+    Scale '
   problemIcon: {fileID: 0}
-  minGreen: 2
-  maxGreen: 4
+  requiredMaterial: 2
+  requiredAmount: 4
+  deathMaterial: 0
+  deathAmount: 2
+  tolerance: 1

@@ -16,5 +16,8 @@ MonoBehaviour:
   catSprite: {fileID: 0}
   ProblemDescription: Needs a good amount of Green, not too little
   problemIcon: {fileID: 0}
-  minGreen: 3
-  maxGreen: 5
+  requiredMaterial: 0
+  requiredAmount: 0
+  deathMaterial: 0
+  deathAmount: 0
+  tolerance: 1

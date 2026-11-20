@@ -10,42 +10,57 @@ public class DeskManager : MonoBehaviour
     private const int StartingLives = 3;
     private int livesRemaining;
 
-    [Header("Master Lists (assign in Inspector)")]
+    [Header("Master Lists")]
     public List<CatDataBase> masterCatPool;
 
     [Header("Scene Slots")]
     public List<CatSlot> activeSlots;
 
-    [Header("ActiveCats")]
+    [Header("Active Cats")]
     public List<GameObject> activeCats;
 
-    [Header("Potion Controls")]
-    public Slider greenPotionSlider;
+    [Header("Potion Manager")]
+    [SerializeField] private PotionManager potionManager;
+
 
     private int Round;
 
     public TextMeshProUGUI roundText;
     public TextMeshProUGUI livesText;
-    public TextMeshProUGUI loseText;
+    public GameObject loseBox;
+    public GameObject potionNotes;
+
+    public TextMeshProUGUI redAmount;
+    public TextMeshProUGUI yellowAmount;
+    public TextMeshProUGUI blueAmount;
+    public TextMeshProUGUI greenAmount;
+    public TextMeshProUGUI magentaAmount;
 
     [SerializeField] private ScoreText scoreManager;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         livesRemaining = StartingLives;
-        Debug.Log($"The round starts with {livesRemaining} lives.", this);
-        GenerateWorkday();
-        Round= 1;
-        loseText.enabled = false;
 
+        Debug.Log($"The round starts with {livesRemaining} lives.", this);
+
+        closeNotes();
+
+        GenerateWorkday();
+
+        Round = 1;
+        loseBox.SetActive(false);
     }
 
     private void Update()
     {
-        roundText.text = Round.ToString();
-        livesText.text = livesRemaining.ToString();
+        roundText.text = $"Round: {Round}";
+        livesText.text = $"Lives: {livesRemaining}";
+        redAmount.text = $"Red: {potionManager.redValue}";
+        yellowAmount.text = $"Yellow: {potionManager.yellowValue}";
+        blueAmount.text = $"Blue: {potionManager.blueValue}";
+        greenAmount.text = $"Green: {potionManager.greenValue}";
+        magentaAmount.text = $"Magenta: {potionManager.magentaValue}";
     }
 
     public void GenerateWorkday()
@@ -62,31 +77,31 @@ public class DeskManager : MonoBehaviour
         {
             Destroy(cat);
         }
+
         activeCats.Clear();
     }
 
     public void RestartGame()
     {
         livesRemaining = StartingLives;
-        scoreManager.ResetScore();
 
-        if (greenPotionSlider == null)
+        if (potionManager == null)
         {
-            Debug.LogError("Assign the Green Potion Slider in the Inspector to reset it.", this);
-        }
-        else
-        {
-            greenPotionSlider.value = greenPotionSlider.minValue;
+            Debug.LogError("Assign the Potion Manager in the Inspector.", this);
+            return;
         }
 
-        Debug.Log($"Game restarted with {livesRemaining} lives.", this);
+        potionManager.ResetPotion();
 
         DestroyCats();
         GenerateWorkday();
-        loseText.enabled = false;
+
+        loseBox.SetActive(false);
         roundText.enabled = true;
 
         Round = 1;
+
+        Debug.Log("Game restarted.", this);
     }
 
     public void BrewPotion()
@@ -97,27 +112,47 @@ public class DeskManager : MonoBehaviour
             return;
         }
 
-        if (greenPotionSlider == null)
+        if (potionManager == null)
         {
-            Debug.LogError("Assign the Green Potion Slider in the Inspector.", this);
+            Debug.LogError("Assign the Potion Manager.", this);
             return;
         }
 
-        int greenAmount = Mathf.RoundToInt(greenPotionSlider.value);
-        Debug.Log($"You brewed a potion with {greenAmount} green.", this);
+        int redAmount = potionManager.redValue;
+        int yellowAmount = potionManager.yellowValue;
+        int blueAmount = potionManager.blueValue;
+        int greenAmount = potionManager.greenValue;
+        int magentaAmount = potionManager.magentaValue;
 
-        bool allCatsAreSafe = true; // Declare and initialize here
+        Debug.Log(
+            $"Potion: Red {redAmount}, Yellow {yellowAmount}, Blue {blueAmount}, Green {greenAmount}, Magenta {magentaAmount}",
+            this
+        );
+
+        bool allCatsAreSafe = true;
 
         foreach (GameObject catObject in activeCats)
         {
             CatCompononet cat = catObject.GetComponent<CatCompononet>();
-            bool catIsSafe = CheckCat(cat.catinfo.catName, greenAmount, cat.probleminfo.minGreen, cat.probleminfo.maxGreen);
+
+            if (cat == null)
+            {
+                Debug.LogError("Cat is missing its CatCompononet.", catObject);
+                allCatsAreSafe = false;
+                continue;
+            }
+
+            bool catIsSafe = CheckCat(
+                cat.catinfo.catName,
+                redAmount,
+                yellowAmount,
+                blueAmount,
+                greenAmount,
+                magentaAmount,
+                cat.probleminfo
+            );
 
             if (!catIsSafe)
-            {
-                scoreManager.AddScore();
-            }
-            else
             {
                 allCatsAreSafe = false;
             }
@@ -125,24 +160,26 @@ public class DeskManager : MonoBehaviour
 
         if (allCatsAreSafe)
         {
-
-            if (allCatsAreSafe)
-            {
-                Debug.Log("All cats are safe! You win this round.", this);
-            }
-
+            Debug.Log("All cats are safe! You win this round.", this);
+            DestroyCats();
+            GenerateWorkday();
+            Round++;
         }
         else
         {
             livesRemaining--;
-            Debug.Log($"One or more cats are not safe. Lives remaining: {livesRemaining}");
+
+            Debug.Log($"One or more cats are unsafe. Lives remaining: {livesRemaining}");
+
             DestroyCats();
-            DestroyCats();
+
             if (livesRemaining <= 0)
             {
                 Debug.Log("Game over. You have no lives remaining.");
+
                 roundText.enabled = false;
-                loseText.enabled = true;
+                loseBox.SetActive(true);
+                closeNotes();
             }
             else
             {
@@ -152,21 +189,91 @@ public class DeskManager : MonoBehaviour
         }
     }
 
-    private bool CheckCat(string catName, int greenAmount, int minimumSafe, int maximumSafe)
+    private bool CheckCat(
+        string catName,
+        int redAmount,
+        int yellowAmount,
+        int blueAmount,
+        int greenAmount,
+        int magentaAmount,
+        ProblemData problem)
     {
-        if (greenAmount < minimumSafe)
+        int requiredValue = GetMaterialValue(
+            problem.requiredMaterial,
+            redAmount,
+            yellowAmount,
+            blueAmount,
+            greenAmount,
+            magentaAmount
+        );
+
+        int deathValue = GetMaterialValue(
+            problem.deathMaterial,
+            redAmount,
+            yellowAmount,
+            blueAmount,
+            greenAmount,
+            magentaAmount
+        );
+
+        bool requiredSafe =
+            Mathf.Abs(requiredValue - problem.requiredAmount) <= problem.tolerance;
+
+        bool deathTriggered = deathValue >= problem.deathAmount;
+
+        if (deathTriggered)
         {
-            Debug.Log($"{catName}: not enough green to help.", this);
+            Debug.Log($"{catName}: Death material threshold reached!", this);
             return false;
         }
 
-        if (greenAmount > maximumSafe)
+        if (!requiredSafe)
         {
-            Debug.Log($"{catName}: too much green; this could harm the cat.", this);
+            Debug.Log($"{catName}: Required material amount is incorrect.", this);
             return false;
         }
 
-        Debug.Log($"{catName}: the green amount is safe.", this);
+        Debug.Log($"{catName}: All material requirements are safe!", this);
         return true;
+    }
+
+    private int GetMaterialValue(
+        PotionColor material,
+        int redAmount,
+        int yellowAmount,
+        int blueAmount,
+        int greenAmount,
+        int magentaAmount)
+    {
+        switch (material)
+        {
+            case PotionColor.Red:
+                return redAmount;
+
+            case PotionColor.Yellow:
+                return yellowAmount;
+
+            case PotionColor.Blue:
+                return blueAmount;
+
+            case PotionColor.Green:
+                return greenAmount;
+
+            case PotionColor.Magenta:
+                return magentaAmount;
+
+            default:
+                return 0;
+        }
+    }
+
+    public void openNotes()
+    {
+        potionNotes.SetActive(true);
+    }
+
+    public void closeNotes()
+    {
+        potionNotes.SetActive(false);
     }
 }

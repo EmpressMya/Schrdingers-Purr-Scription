@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3321240327557579748}
   - component: {fileID: 4207572114790090569}
   - component: {fileID: 2393354360461564541}
-  - component: {fileID: 2623779424263737335}
   - component: {fileID: 4512611134715610160}
   m_Layer: 0
   m_Name: CatBase
@@ -92,29 +91,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2623779424263737335
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3546377672886528351}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &4512611134715610160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,9 +104,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CatCompononet
   catinfo:
-    catName: placeHolder
+    catName: Felix
     catSprite: {fileID: 0}
   probleminfo:
-    ProblemDescription: placeHolder
+    ProblemDescription: Needs a little bit of green but not too much
     problemIcon: {fileID: 0}
-    correctTreatment: placeHolder
+    requiredMaterial: 0
+    requiredAmount: 0
+    deathMaterial: 0
+    deathAmount: 0
+    tolerance: 1

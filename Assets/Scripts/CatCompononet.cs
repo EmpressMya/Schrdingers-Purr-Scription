@@ -12,8 +12,14 @@ public class ProblemData
 {
     public string ProblemDescription;
     public Sprite problemIcon;
-    public int minGreen;
-    public int maxGreen;
+
+    public PotionColor requiredMaterial;
+    public int requiredAmount;
+
+    public PotionColor deathMaterial;
+    public int deathAmount;
+
+    public int tolerance;
 }
 
 public class CatCompononet : MonoBehaviour
@@ -21,3 +27,4 @@ public class CatCompononet : MonoBehaviour
     public CatData catinfo;
     public ProblemData probleminfo;
 }
+
