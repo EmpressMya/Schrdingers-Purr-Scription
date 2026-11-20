@@ -69,6 +69,7 @@ public class DeskManager : MonoBehaviour
         {
             slot.catProcess();
         }
+        potionManager.ResetPotion();
     }
 
     public void DestroyCats()
